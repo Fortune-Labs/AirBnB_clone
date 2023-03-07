@@ -2,5 +2,5 @@
 
 ## Concepts
 These concepts were used in this project
-*Python packages
-*AirBnB clone
+* Python packages
+* AirBnB clone
