@@ -15,17 +15,21 @@ class BaseModel:
         """
         Instantiation of the base class
         """
+
+        from models import storage
+
         if not kwargs:
             self.id = str(uuid4())
             self.created_at = self.updated_at = datetime.now()
+            storage.new(self)
 
         else:
-                for key, value in kwargs.items():
-                    if key != "__class__":
-                        if key in ("created_at", "updated"):
-                            setattr(self, key, datetime.fromisoformat(value))
-                        else:
-                            setattr(self, key, value)
+            for key, value in kwargs.items():
+                if key != "__class__":
+                    if key in ("created_at", "updated_at"):
+                        setattr(self, key, datetime.fromisoformat(value))
+                    else:
+                        setattr(self, key, value)
 
     def __str__(self):
         """
@@ -41,7 +45,11 @@ class BaseModel:
         updates the public instance attribute updated_at with the current
         datetime
         """
-        self.update_at = datetime.now()
+
+        from models import storage
+
+        self.updated_at = datetime.now()
+        storage.save()
 
     def to_dict(self):
         """
