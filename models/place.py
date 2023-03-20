@@ -1,7 +1,5 @@
 #!/usr/bin/python3
-
-""" Contains the Place model """
-
+"""Contains the Place model"""
 from models.base_model import BaseModel
 
 
@@ -22,7 +20,6 @@ class Place(BaseModel):
         longitude (float): The longitude of the place.
         amenity_ids (list): A list of Amenity ids.
     """
-
     city_id = ""
     user_id = ""
     name = ""
